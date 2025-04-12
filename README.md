@@ -5,7 +5,7 @@
 
 ## Overview
 
-This is a project from [The Odin Project](https://theodinproject.com): [Project: To-do List](https://www.theodinproject.com/lessons/node-path-javascript-todo-list). This project required us to create a dynamically rendered Restaurant Page.
+This is a project from [The Odin Project](https://theodinproject.com): [Project: To-do List](https://www.theodinproject.com/lessons/node-path-javascript-todo-list). This project required us to create a To-do App taking inspiration from popular To-do Apps like [Todolist](https://en.todoist.com/), [Things](https://culturedcode.com/things/) and [Any.do](https://www.any.do/)
 
 ## Learning Points
 
