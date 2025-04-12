@@ -20,6 +20,31 @@ This is a project from [The Odin Project](https://theodinproject.com): [Project:
 - [![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=fff)](#)
 - [![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?&logo=webpack&logoColor=black)](#)
 
+- ## Getting Started
+
+### Prerequisites
+
+You will need to install the latest version of npm to get started on using this project
+* npm
+ ```sh
+ npm install npm@latest -g
+ ```
+
+### Installation
+Getting started on running the webpack server to your localhost, localhost:8080
+1) Running the webpack server
+  ```sh
+  git clone git@github.com:JohnFerrancol/restaurant-page.git
+  ```
+2) Installing npm packages
+  ```sh
+  npm install
+  ```
+3) Running the webpack server
+  ```sh
+  npm run serve
+  ```
+
 ## Roadmap
 
 - [ ] Creating the Project and Task classes to store the data in the web application
