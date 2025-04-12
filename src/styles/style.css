@@ -1,10 +1,150 @@
+@font-face {
+  font-family: "Manrope Regular";
+  src: url("../assets/fonts/manrope-regular-webfont.woff2") format("woff2"),
+    url("../assets/fonts/manrope-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Manrope Bold";
+  src: url("../assets/fonts/manrope-bold-webfont.woff2") format("woff2"),
+    url("../assets/fonts/manrope-bold-webfont.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  --text-primary-color: #202020;
+  --text-secondary-color: #dc4c3e;
+  --svg-primary: invert(13%) sepia(39%) saturate(0%) hue-rotate(149deg)
+    brightness(101%) contrast(105%);
+  --svg-secondary: invert(72%) sepia(92%) saturate(5178%) hue-rotate(332deg)
+    brightness(86%) contrast(101%);
+  --aside-background: #fcfaf8;
+  --main-background: #ffffff;
+  --regular-font: "Manrope Regular", sans-serif;
+  --bolded-font: "Manrope Bold", "Manrope Regular";
+  --line-color: #c0c0c0c0;
+}
+
 body {
-  background-color: black;
-  color: white;
+  background-color: var(--main-background);
+  color: var(--text-primary-color);
+  font-family: var(--regular-font);
+
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 6fr;
+}
+
+aside.navigation {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  padding: 1.1rem;
+  background-color: var(--aside-background);
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+aside .website-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary-color);
+}
+
+aside .website-logo-icon {
+  filter: var(--svg-secondary);
+  width: 3rem;
+}
+
+aside .website-logo-text {
+  font-size: 1.6rem;
+  font-family: var(--bolded-font);
+  text-decoration: none;
+  color: inherit;
+}
+
+aside .nav-primary > ul,
+aside .nav-projects > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+aside .nav-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+aside .nav-items {
+  width: 1.5rem;
+  height: auto;
+  filter: var(--svg-primary);
+}
+
+aside .nav-text {
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+aside .nav-projects-container {
+  padding: 1rem 0.5rem;
+}
+
+main.projects-view {
+  font-size: 1.15rem;
+  padding: 1rem 3rem;
+}
+
+main.projects-view .projects-title {
+  font-family: var(--bolded-font);
+}
+
+main.projects-view .tasks-container {
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+main.projects-view .custom-hr {
+  border: none;
+  height: 1px;
+  background-color: var(--line-color);
+}
+
+main.projects-view input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+  color: var(--line-color);
+}
+
+main.projects-view .add-task {
+  font-size: inherit;
+  font-family: inherit;
+  background: none;
+  border: none;
+  margin: 1rem 1rem;
+}
+
+main.projects-view .plus {
+  font-size: 1.25rem;
+  font-family: var(--bolded-font);
+  color: var(--text-secondary-color);
+}
+
+main.projects-view .add-task:hover {
+  color: var(--text-secondary-color);
+  cursor: pointer;
 }
