@@ -1,6 +1,6 @@
 # To-do List
 
- [Live Demo](https://johnferrancol.github.io/todo-list/)<br/><br/>
+[Live Demo](https://johnferrancol.github.io/todo-list/)<br/><br/>
 [![The Odin Project](https://img.shields.io/badge/The%20Odin%20Project-A9792B?logo=theodinproject&logoColor=fff)](#)
 
 ## Overview
@@ -25,30 +25,39 @@ This is a project from [The Odin Project](https://theodinproject.com): [Project:
 ### Prerequisites
 
 You will need to install the latest version of npm to get started on using this project
-* npm
- ```sh
- npm install npm@latest -g
- ```
+
+- npm
+
+```sh
+npm install npm@latest -g
+```
 
 ### Installation
+
 Getting started on running the webpack server to your localhost, localhost:8080
-1) Running the webpack server
-  ```sh
-  git clone git@github.com:JohnFerrancol/restaurant-page.git
-  ```
-2) Installing npm packages
-  ```sh
-  npm install
-  ```
-3) Running the webpack server
-  ```sh
-  npm run serve
-  ```
+
+1. Running the webpack server
+
+```sh
+git clone git@github.com:JohnFerrancol/restaurant-page.git
+```
+
+2. Installing npm packages
+
+```sh
+npm install
+```
+
+3. Running the webpack server
+
+```sh
+npm run serve
+```
 
 ## Roadmap
 
 - [x] Creating the Project and Task classes to store the data in the web application
-- [ ] Allowing tab switching logic to ensure that we can see different projects dynamically
+- [x] Allowing tab switching logic to ensure that we can see different projects dynamically
 - [ ] dded the forms to add a project or to add a task to the project
 - [ ] Added tabs to see Tasks in a specific time frame like tasks for TOday and the week
 - [ ] Implemented local storage to store all of this data

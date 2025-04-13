@@ -17,9 +17,10 @@ class Project {
 class Task {
   #id = crypto.randomUUID();
   #completed = false;
-  constructor(title, date) {
+  constructor(title, date, projectTitle) {
     this.title = title;
     this.date = date;
+    this.projectTitle = projectTitle;
   }
 
   getId() {
