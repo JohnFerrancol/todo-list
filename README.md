@@ -47,8 +47,8 @@ Getting started on running the webpack server to your localhost, localhost:8080
 
 ## Roadmap
 
-- [ ] Creating the Project and Task classes to store the data in the web application
-- [ ] Added the forms to add a project or to add a task to the project
+- [x] Creating the Project and Task classes to store the data in the web application
 - [ ] Allowing tab switching logic to ensure that we can see different projects dynamically
+- [ ] dded the forms to add a project or to add a task to the project
 - [ ] Added tabs to see Tasks in a specific time frame like tasks for TOday and the week
 - [ ] Implemented local storage to store all of this data
