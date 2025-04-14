@@ -17,7 +17,7 @@
       </div>
       <nav class="nav-primary">
         <ul>
-          <li class="nav-wrapper">
+          <li class="nav-wrapper chosen-link">
             <img
               src="assets/logos/inbox.svg"
               alt="All Tasks"
@@ -41,13 +41,16 @@
               alt="message"
               class="nav-items"
             />
-            <a href="#week" class="nav-text" data-tab="Week">Next 7 days</a>
+            <a href="#week" class="nav-text" data-tab="Week">This Week</a>
           </li>
         </ul>
       </nav>
 
       <nav class="nav-projects">
-        <h2 class="nav-projects-title">My Projects</h2>
+        <div class="add-projects-container">
+          <h2 class="nav-projects-title">My Projects</h2>
+          <button class="plus-button">+</button>
+        </div>
         <ul class="nav-projects-container"></ul>
       </nav>
     </aside>
@@ -57,5 +60,7 @@
       <div class="tasks-container"></div>
       <button class="add-task"><span class="plus">+</span> Add Task</button>
     </main>
+
+    <dialog></dialog>
   </body>
 </html>
