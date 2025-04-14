@@ -20,7 +20,7 @@ This is a project from [The Odin Project](https://theodinproject.com): [Project:
 - [![npm](https://img.shields.io/badge/npm-CB3837?logo=npm&logoColor=fff)](#)
 - [![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?&logo=webpack&logoColor=black)](#)
 
-- ## Getting Started
+## Getting Started
 
 ### Prerequisites
 
