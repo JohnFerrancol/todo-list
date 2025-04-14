@@ -2,6 +2,7 @@ import {
   createTaskContainer,
   createProjectsContainer,
   createProjectDialog,
+  createTaskDialog,
 } from "./dom.js";
 
 const renderProjects = (projects) => {
@@ -21,9 +22,20 @@ const renderTasks = (tasks, tabTitle) => {
 const renderAddProjectDialog = () => {
   const addProjectDialog = document.querySelector("dialog");
   addProjectDialog.innerHTML = "";
-  addProjectDialog.classList.add("add-project-dialog");
 
   createProjectDialog(addProjectDialog);
 };
 
-export { renderProjects, renderTasks, renderAddProjectDialog };
+const renderAddTaskDialog = () => {
+  const addTaskDialog = document.querySelector("dialog");
+  addTaskDialog.innerHTML = "";
+
+  createTaskDialog(addTaskDialog);
+};
+
+export {
+  renderProjects,
+  renderTasks,
+  renderAddProjectDialog,
+  renderAddTaskDialog,
+};

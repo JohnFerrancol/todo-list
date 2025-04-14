@@ -28,4 +28,11 @@ const addProjectHandler = (projectName) => {
   projects.push(newProject);
 };
 
-export { loadProjects, addProjectHandler };
+const addTaskHandler = (taskName, taskDate, projectName) => {
+  let projects = loadProjects();
+  let project = projects.find((project) => project.title === projectName);
+
+  project.addTask(new Task(taskName, formatDate(taskDate), projectName));
+};
+
+export { loadProjects, addProjectHandler, addTaskHandler };

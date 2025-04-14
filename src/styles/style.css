@@ -208,7 +208,7 @@ main.projects-view .custom-hr {
   background-color: var(--line-color);
 }
 
-main.projects-view .add-task {
+main.projects-view .add-task-button {
   font-size: inherit;
   font-family: inherit;
   background: none;
@@ -222,7 +222,7 @@ main.projects-view .plus {
   color: var(--text-secondary-color);
 }
 
-main.projects-view .add-task:hover {
+main.projects-view .add-task-button:hover {
   color: var(--text-secondary-color);
   cursor: pointer;
 }
@@ -256,7 +256,8 @@ dialog .dialog-title {
   text-align: center;
 }
 
-dialog .create-project-form {
+dialog .create-project-form,
+.create-task-form {
   display: flex;
   flex-direction: column;
   align-items: center;

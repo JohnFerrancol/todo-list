@@ -100,19 +100,58 @@ const createProjectDialog = (addProjectDialog) => {
   submitButtonContainer.appendChild(submitButton);
 };
 
-const handleTabSelectionUI = (links, link) => {
-  links.forEach((link) => {
-    const navWrapper = link.closest(".nav-wrapper");
-    navWrapper.classList.remove("chosen-link");
-  });
+const createTaskDialog = (addTaskDialog) => {
+  const closeDialogContainer = document.createElement("div");
+  closeDialogContainer.classList.add("close-dialog-container");
 
-  const selectedNavWrapper = link.closest(".nav-wrapper");
-  selectedNavWrapper.classList.add("chosen-link");
+  const closeDialogIcon = document.createElement("img");
+  closeDialogIcon.classList.add("close-dialog-icon");
+  closeDialogIcon.src = closeDialogLogo;
+  closeDialogIcon.alt = "Close Dialog";
+  closeDialogContainer.appendChild(closeDialogIcon);
+  addTaskDialog.appendChild(closeDialogContainer);
+
+  const dialogTitle = document.createElement("h3");
+  dialogTitle.textContent = "Add Task";
+  dialogTitle.classList.add("dialog-title");
+  addTaskDialog.appendChild(dialogTitle);
+
+  const createTaskForm = document.createElement("form");
+  createTaskForm.classList.add("create-task-form");
+  addTaskDialog.appendChild(createTaskForm);
+
+  const newTaskTitle = document.createElement("input");
+  newTaskTitle.classList.add("dialog-inputs");
+  newTaskTitle.type = "text";
+  newTaskTitle.id = "new-task-title";
+  newTaskTitle.name = "new-task-title";
+  newTaskTitle.placeholder = "Task Title";
+  newTaskTitle.required = true;
+  createTaskForm.appendChild(newTaskTitle);
+
+  const newTaskDate = document.createElement("input");
+  newTaskDate.classList.add("dialog-inputs");
+  newTaskDate.type = "date";
+  newTaskDate.id = "new-task-date";
+  newTaskDate.name = "new-task-date";
+  newTaskDate.placeholder = "Task Due Date";
+  newTaskDate.required = true;
+  createTaskForm.appendChild(newTaskDate);
+
+  const submitButtonContainer = document.createElement("div");
+  submitButtonContainer.classList.add("button-container");
+  createTaskForm.appendChild(submitButtonContainer);
+
+  const submitButton = document.createElement("button");
+  submitButton.classList.add("submit-button");
+  submitButton.type = "submit";
+  submitButton.textContent = "Submit";
+  submitButtonContainer.appendChild(submitButton);
 };
 
 export {
   createTaskContainer,
   createProjectsContainer,
   createProjectDialog,
-  handleTabSelectionUI,
+  createTaskDialog,
 };

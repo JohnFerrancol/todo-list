@@ -1,15 +1,25 @@
 import {
   renderTasks,
   renderAddProjectDialog,
+  renderAddTaskDialog,
   renderProjects,
 } from "./render.js";
-import { loadProjects, addProjectHandler } from "../data/storage.js";
+import {
+  loadProjects,
+  addProjectHandler,
+  addTaskHandler,
+} from "../data/storage.js";
 import { getAllTasks } from "../utils/taskFilters.js";
 import { Task } from "../data/classes.js";
-import { handleTabSelectionUI } from "./dom.js";
+import {
+  handleTabSelectionUI,
+  handleAddTaskButton,
+  refreshTasksHandler,
+} from "./uiHelpers.js";
 import { formatDate } from "../utils/dateUtils.js";
 
 const projectNavListener = () => {
+  handleAddTaskButton(false);
   const links = document.querySelectorAll(".nav-text");
 
   links.forEach((link) => {
@@ -20,6 +30,7 @@ const projectNavListener = () => {
       if (projects.find((project) => project.title === tabToRender)) {
         let project = projects.find((project) => project.title === tabToRender);
         renderTasks(project.getTasks(), tabToRender);
+        handleAddTaskButton(true);
       } else {
         const mappingTasksToRender = {
           "All Tasks": getAllTasks(),
@@ -27,6 +38,7 @@ const projectNavListener = () => {
           Week: getAllTasks(),
         };
         renderTasks(mappingTasksToRender[tabToRender], tabToRender);
+        handleAddTaskButton(false);
       }
     });
   });
@@ -37,7 +49,7 @@ document
   .addEventListener("click", () => {
     renderAddProjectDialog();
 
-    const addProjectDialog = document.querySelector(".add-project-dialog");
+    const addProjectDialog = document.querySelector("dialog");
     addProjectDialog.showModal();
 
     const createProjectForm = document.querySelector(".create-project-form");
@@ -56,19 +68,10 @@ document
       );
 
       handleTabSelectionUI(links, newProjectLink);
-      let project = projects.find(
-        (project) => project.title === addProjectTitle
-      );
-      project.addTask(
-        new Task(
-          "Boiler Plate",
-          formatDate(new Date("2025-04-13")),
-          project.title
-        )
-      );
-      renderTasks(project.getTasks(), addProjectTitle);
+      refreshTasksHandler(addProjectTitle);
       addProjectDialog.close();
       projectNavListener();
+      handleAddTaskButton(true);
     });
 
     const closeDialogIcon = document.querySelector(".close-dialog-icon");
@@ -77,5 +80,32 @@ document
       addProjectDialog.close();
     });
   });
+
+document.querySelector(".add-task-button").addEventListener("click", () => {
+  renderAddTaskDialog();
+
+  const addTaskDialog = document.querySelector("dialog");
+  addTaskDialog.showModal();
+
+  const createTaskForm = document.querySelector(".create-task-form");
+  createTaskForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const addTaskTitle = document.querySelector("#new-task-title").value.trim();
+    const addTaskDate = document.querySelector("#new-task-date").value.trim();
+    const projectTitle = document.querySelector(".projects-title").textContent;
+
+    addTaskHandler(addTaskTitle, addTaskDate, projectTitle);
+    refreshTasksHandler(projectTitle);
+    addTaskDialog.close();
+    handleAddTaskButton(true);
+  });
+
+  const closeDialogIcon = document.querySelector(".close-dialog-icon");
+  closeDialogIcon.addEventListener("click", () => {
+    createTaskForm.reset();
+    addTaskDialog.close();
+  });
+});
 
 export { projectNavListener };
