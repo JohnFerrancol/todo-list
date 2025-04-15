@@ -1,16 +1,25 @@
 import { loadProjects } from "../data/storage.js";
+import { isToday, isThisWeek } from "date-fns";
 
-const getAllTasks = () => {
-  let projects = loadProjects();
-  const allTasks = [];
+const getFilteredTasks = (filterFunction) => {
+  const projects = loadProjects();
+  const filteredTasks = [];
 
   projects.forEach((project) => {
     const tasks = project.getTasks();
 
-    tasks.forEach((task) => allTasks.push(task));
+    tasks.forEach((task) => {
+      if (filterFunction(task)) {
+        filteredTasks.push(task);
+      }
+    });
   });
 
-  return allTasks;
+  return filteredTasks;
 };
 
-export { getAllTasks };
+const getAllTasks = () => getFilteredTasks(() => true);
+const getTodayTasks = () => getFilteredTasks((task) => isToday(task.date));
+const getWeekTasks = () => getFilteredTasks((task) => isThisWeek(task.date));
+
+export { getAllTasks, getTodayTasks, getWeekTasks };

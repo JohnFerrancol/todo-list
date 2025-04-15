@@ -9,14 +9,16 @@ import {
   addProjectHandler,
   addTaskHandler,
 } from "../data/storage.js";
-import { getAllTasks } from "../utils/taskFilters.js";
-import { Task } from "../data/classes.js";
+import {
+  getAllTasks,
+  getTodayTasks,
+  getWeekTasks,
+} from "../utils/taskFilters.js";
 import {
   handleTabSelectionUI,
   handleAddTaskButton,
   refreshTasksHandler,
 } from "./uiHelpers.js";
-import { formatDate } from "../utils/dateUtils.js";
 
 const projectNavListener = () => {
   handleAddTaskButton(false);
@@ -34,10 +36,11 @@ const projectNavListener = () => {
       } else {
         const mappingTasksToRender = {
           "All Tasks": getAllTasks(),
-          Today: getAllTasks(),
-          Week: getAllTasks(),
+          Today: getTodayTasks(),
+          Week: getWeekTasks(),
         };
         renderTasks(mappingTasksToRender[tabToRender], tabToRender);
+        console.log(mappingTasksToRender[tabToRender]);
         handleAddTaskButton(false);
       }
     });

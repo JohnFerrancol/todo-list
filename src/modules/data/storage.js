@@ -13,7 +13,10 @@ projects.push(project1);
 
 const project2 = new Project("CS Prep");
 project2.addTask(
-  new Task("Complete SICP", formatDate(new Date("2025-04-13")), project2.title)
+  new Task("Complete SICP", formatDate(new Date("2025-04-15")), project2.title)
+);
+project2.addTask(
+  new Task("Complete DSA", formatDate(new Date("2025-04-22")), project2.title)
 );
 projects.push(project2);
 

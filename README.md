@@ -59,7 +59,7 @@ npm run serve
 - [x] Creating the Project and Task classes to store the data in the web application
 - [x] Allowing tab switching logic to ensure that we can see different projects dynamically
 - [x] Added the forms to add a project or to add a task to the project
-- [ ] Added tabs to see Tasks in a specific time frame like tasks for Today and the week
+- [x] Added tabs to see Tasks in a specific time frame like tasks for Today and the week
 - [ ] Handling logic to complete tasks
 - [ ] Handling logic to edit task information or project names
 - [ ] Implemented local storage to store all of this data
