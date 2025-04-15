@@ -1,4 +1,5 @@
 import closeDialogLogo from "../../assets/logos/close.svg";
+import { completeTaskListener } from "./event.js";
 
 const createProjectsContainer = (projectsContainer, projects) => {
   projects.forEach((project) => {
@@ -30,7 +31,9 @@ const createTaskContainer = (tasksContainer, tasks, tabTitle) => {
     const hyphenedTitle = task.title.toLowerCase().split(" ").join("-");
     checkBox.id = hyphenedTitle;
     checkBox.name = hyphenedTitle;
+    checkBox.dataset.Id = task.getId();
     taskWrapper.appendChild(checkBox);
+    completeTaskListener(checkBox);
 
     const label = document.createElement("label");
     label.for = hyphenedTitle;

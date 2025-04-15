@@ -60,6 +60,6 @@ npm run serve
 - [x] Allowing tab switching logic to ensure that we can see different projects dynamically
 - [x] Added the forms to add a project or to add a task to the project
 - [x] Added tabs to see Tasks in a specific time frame like tasks for Today and the week
-- [ ] Handling logic to complete tasks
+- [x] Handling logic to complete tasks
 - [ ] Handling logic to edit task information or project names
 - [ ] Implemented local storage to store all of this data

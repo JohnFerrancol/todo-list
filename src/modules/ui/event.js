@@ -1,5 +1,4 @@
 import {
-  renderTasks,
   renderAddProjectDialog,
   renderAddTaskDialog,
   renderProjects,
@@ -8,12 +7,8 @@ import {
   loadProjects,
   addProjectHandler,
   addTaskHandler,
+  completeTaskHandler,
 } from "../data/storage.js";
-import {
-  getAllTasks,
-  getTodayTasks,
-  getWeekTasks,
-} from "../utils/taskFilters.js";
 import {
   handleTabSelectionUI,
   handleAddTaskButton,
@@ -28,21 +23,7 @@ const projectNavListener = () => {
     link.addEventListener("click", () => {
       handleTabSelectionUI(links, link);
       const tabToRender = link.dataset.tab;
-      const projects = loadProjects();
-      if (projects.find((project) => project.title === tabToRender)) {
-        let project = projects.find((project) => project.title === tabToRender);
-        renderTasks(project.getTasks(), tabToRender);
-        handleAddTaskButton(true);
-      } else {
-        const mappingTasksToRender = {
-          "All Tasks": getAllTasks(),
-          Today: getTodayTasks(),
-          Week: getWeekTasks(),
-        };
-        renderTasks(mappingTasksToRender[tabToRender], tabToRender);
-        console.log(mappingTasksToRender[tabToRender]);
-        handleAddTaskButton(false);
-      }
+      refreshTasksHandler(tabToRender);
     });
   });
 };
@@ -111,4 +92,21 @@ document.querySelector(".add-task-button").addEventListener("click", () => {
   });
 });
 
-export { projectNavListener };
+const completeTaskListener = (checkBox) => {
+  checkBox.addEventListener("change", () => {
+    if (checkBox.checked) {
+      const taskToCompleteId = checkBox.dataset.Id;
+      completeTaskHandler(taskToCompleteId);
+
+      const projects = loadProjects();
+      console.log(projects);
+      const tabTitle = document.querySelector(".projects-title").textContent;
+
+      setTimeout(() => {
+        refreshTasksHandler(tabTitle);
+      }, 250);
+    }
+  });
+};
+
+export { projectNavListener, completeTaskListener };
