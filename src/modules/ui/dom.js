@@ -1,4 +1,5 @@
 import closeDialogLogo from "../../assets/logos/close.svg";
+import deleteIconLogo from "../../assets/logos/delete.svg";
 import { completeTaskListener } from "./event.js";
 
 const createProjectsContainer = (projectsContainer, projects) => {
@@ -25,6 +26,11 @@ const createTaskContainer = (tasksContainer, tasks, tabTitle) => {
   tasks.forEach((task) => {
     const taskWrapper = document.createElement("div");
     taskWrapper.classList.add("task-wrapper");
+    tasksContainer.appendChild(taskWrapper);
+
+    const checkBoxWrapper = document.createElement("div");
+    checkBoxWrapper.classList.add("checkbox-wrapper");
+    taskWrapper.appendChild(checkBoxWrapper);
 
     const checkBox = document.createElement("input");
     checkBox.type = "checkbox";
@@ -32,15 +38,21 @@ const createTaskContainer = (tasksContainer, tasks, tabTitle) => {
     checkBox.id = hyphenedTitle;
     checkBox.name = hyphenedTitle;
     checkBox.dataset.Id = task.getId();
-    taskWrapper.appendChild(checkBox);
+    checkBoxWrapper.appendChild(checkBox);
     completeTaskListener(checkBox);
 
     const label = document.createElement("label");
     label.for = hyphenedTitle;
     label.textContent = task.title;
-    taskWrapper.appendChild(label);
+    checkBoxWrapper.appendChild(label);
 
-    tasksContainer.appendChild(taskWrapper);
+    const deleteTaskIcon = document.createElement("img");
+    deleteTaskIcon.classList.add("delete-task-icon");
+    deleteTaskIcon.src = deleteIconLogo;
+    deleteTaskIcon.alt = "Delete Task";
+    deleteTaskIcon.dataset.Id = task.getId();
+    taskWrapper.appendChild(deleteTaskIcon);
+    completeTaskListener(deleteTaskIcon);
 
     const taskInformation = document.createElement("div");
     taskInformation.classList.add("task-information");

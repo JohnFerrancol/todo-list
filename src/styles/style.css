@@ -154,10 +154,16 @@ main.projects-view .tasks-container {
   gap: 1rem;
 }
 
-main.projects-view .task-wrapper {
+main.projects-view .checkbox-wrapper {
   display: flex;
   gap: 0.5rem;
   align-items: center;
+}
+
+main.projects-view .task-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
 }
 
 main.projects-view input[type="checkbox"] {
@@ -200,6 +206,12 @@ main.projects-view .task-information {
   display: flex;
   justify-content: space-between;
   font-size: 1rem;
+}
+
+main.projects-view .delete-task-icon {
+  width: 1.5rem;
+  margin-right: 2rem;
+  filter: var(--svg-secondary);
 }
 
 main.projects-view .custom-hr {

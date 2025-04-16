@@ -92,19 +92,22 @@ document.querySelector(".add-task-button").addEventListener("click", () => {
   });
 });
 
-const completeTaskListener = (checkBox) => {
-  checkBox.addEventListener("change", () => {
-    if (checkBox.checked) {
-      const taskToCompleteId = checkBox.dataset.Id;
+const completeTaskListener = (elementClicker) => {
+  elementClicker.addEventListener("click", (event) => {
+    const clickedElement = event.target;
+    if (elementClicker.checked || clickedElement.tagName === "IMG") {
+      const taskToCompleteId = elementClicker.dataset.Id;
       completeTaskHandler(taskToCompleteId);
 
       const projects = loadProjects();
       console.log(projects);
       const tabTitle = document.querySelector(".projects-title").textContent;
 
+      let timeOut = 0;
+      if (clickedElement.tagName !== "IMG") timeOut = 250;
       setTimeout(() => {
         refreshTasksHandler(tabTitle);
-      }, 250);
+      }, timeOut);
     }
   });
 };
