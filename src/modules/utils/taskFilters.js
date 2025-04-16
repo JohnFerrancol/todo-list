@@ -22,4 +22,10 @@ const getAllTasks = () => getFilteredTasks(() => true);
 const getTodayTasks = () => getFilteredTasks((task) => isToday(task.date));
 const getWeekTasks = () => getFilteredTasks((task) => isThisWeek(task.date));
 
-export { getAllTasks, getTodayTasks, getWeekTasks };
+const findTask = (taskId) => {
+  const allTasks = getAllTasks();
+
+  return allTasks.find((task) => task.getId() === taskId);
+};
+
+export { getAllTasks, getTodayTasks, getWeekTasks, findTask };

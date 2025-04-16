@@ -1,6 +1,6 @@
 import { Project, Task } from "./classes.js";
 import { formatDate } from "../utils/dateUtils.js";
-import { getAllTasks } from "../utils/taskFilters.js";
+import { getAllTasks, findTask } from "../utils/taskFilters.js";
 
 let projects = [];
 const project1 = new Project("Web Development");
@@ -40,9 +40,7 @@ const addTaskHandler = (taskName, taskDate, projectName) => {
 };
 
 const completeTaskHandler = (taskId) => {
-  const allTasks = getAllTasks();
-
-  let taskToComplete = allTasks.find((task) => task.getId() === taskId);
+  const taskToComplete = findTask(taskId);
   let project = projects.find(
     (project) => project.title === taskToComplete.projectTitle
   );
@@ -50,4 +48,14 @@ const completeTaskHandler = (taskId) => {
   project.completeTask(taskToComplete);
 };
 
-export { loadProjects, addProjectHandler, addTaskHandler, completeTaskHandler };
+const editTaskHandler = (newTaskObject, task) => {
+  task.editTask(newTaskObject);
+};
+
+export {
+  loadProjects,
+  addProjectHandler,
+  addTaskHandler,
+  completeTaskHandler,
+  editTaskHandler,
+};

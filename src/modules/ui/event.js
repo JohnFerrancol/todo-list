@@ -8,12 +8,15 @@ import {
   addProjectHandler,
   addTaskHandler,
   completeTaskHandler,
+  editTaskHandler,
 } from "../data/storage.js";
 import {
   handleTabSelectionUI,
   handleAddTaskButton,
   refreshTasksHandler,
 } from "./uiHelpers.js";
+import { findTask } from "../utils/taskFilters.js";
+import { deformatDate } from "../utils/dateUtils.js";
 
 const projectNavListener = () => {
   handleAddTaskButton(false);
@@ -96,11 +99,9 @@ const completeTaskListener = (elementClicker) => {
   elementClicker.addEventListener("click", (event) => {
     const clickedElement = event.target;
     if (elementClicker.checked || clickedElement.tagName === "IMG") {
-      const taskToCompleteId = elementClicker.dataset.Id;
+      const findTaskWrapper = elementClicker.closest(".task-wrapper");
+      const taskToCompleteId = findTaskWrapper.dataset.id;
       completeTaskHandler(taskToCompleteId);
-
-      const projects = loadProjects();
-      console.log(projects);
       const tabTitle = document.querySelector(".projects-title").textContent;
 
       let timeOut = 0;
@@ -112,4 +113,47 @@ const completeTaskListener = (elementClicker) => {
   });
 };
 
-export { projectNavListener, completeTaskListener };
+const editingTaskListener = (taskClicked) => {
+  taskClicked.addEventListener("click", () => {
+    const findTaskWrapper = taskClicked.closest(".task-wrapper");
+    renderAddTaskDialog();
+
+    const findTaskObject = findTask(findTaskWrapper.dataset.id);
+    const taskTitle = document.querySelector("#new-task-title");
+    const taskDate = document.querySelector("#new-task-date");
+    taskTitle.value = findTaskObject.title;
+    taskDate.value = deformatDate(findTaskObject.date);
+
+    const editTaskDialog = document.querySelector("dialog");
+    editTaskDialog.showModal();
+
+    const editTaskForm = document.querySelector(".create-task-form");
+    editTaskForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const editTaskTitle = document
+        .querySelector("#new-task-title")
+        .value.trim();
+      const editTaskDate = document
+        .querySelector("#new-task-date")
+        .value.trim();
+      const projectTitle =
+        document.querySelector(".projects-title").textContent;
+      editTaskHandler(
+        { newTitle: editTaskTitle, newDate: editTaskDate },
+        findTaskObject
+      );
+      console.log(loadProjects());
+      refreshTasksHandler(projectTitle);
+      editTaskDialog.close();
+      handleAddTaskButton(true);
+    });
+
+    const closeDialogIcon = document.querySelector(".close-dialog-icon");
+    closeDialogIcon.addEventListener("click", () => {
+      editTaskDialog.close();
+    });
+  });
+};
+
+export { projectNavListener, completeTaskListener, editingTaskListener };

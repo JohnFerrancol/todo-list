@@ -34,6 +34,11 @@ class Task {
   toggleCompletion() {
     this.#completed = !this.#completed;
   }
+
+  editTask(newTaskObject) {
+    this.title = newTaskObject.newTitle;
+    this.date = newTaskObject.newDate;
+  }
 }
 
 export { Project, Task };
