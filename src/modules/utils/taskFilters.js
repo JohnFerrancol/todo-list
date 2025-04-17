@@ -26,6 +26,8 @@ const getWeekTasks = () =>
   getFilteredTasks((task) => isThisWeek(task.date), false);
 const getCompletedTasks = () =>
   getFilteredTasks((task) => task.getCompletion(), true);
+const getProjectTasks = (targetTitle) =>
+  getFilteredTasks((task) => task.projectTitle === targetTitle, false);
 
 const findTask = (taskId) => {
   const allTasks = getAllTasks();
@@ -38,5 +40,6 @@ export {
   getTodayTasks,
   getWeekTasks,
   getCompletedTasks,
+  getProjectTasks,
   findTask,
 };

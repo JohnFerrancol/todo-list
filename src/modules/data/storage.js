@@ -41,7 +41,6 @@ const addTaskHandler = (taskName, taskDate, projectName) => {
 
 const completeTaskHandler = (taskId, isCheckBox) => {
   const taskToComplete = findTask(taskId);
-  console.log(taskToComplete);
 
   if (isCheckBox) {
     taskToComplete.toggleCompletion();

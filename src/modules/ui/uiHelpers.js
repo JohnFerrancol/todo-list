@@ -5,6 +5,7 @@ import {
   getTodayTasks,
   getWeekTasks,
   getCompletedTasks,
+  getProjectTasks,
 } from "../utils/taskFilters.js";
 
 const handleTabSelectionUI = (links, link) => {
@@ -26,7 +27,7 @@ const refreshTasksHandler = (tabTitle) => {
   const projects = loadProjects();
   if (projects.find((project) => project.title === tabTitle)) {
     let project = projects.find((project) => project.title === tabTitle);
-    renderTasks(project.getTasks(), tabTitle);
+    renderTasks(getProjectTasks(project.title), tabTitle);
     handleAddTaskButton(true);
   } else {
     const mappingTasksToRender = {
