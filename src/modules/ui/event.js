@@ -16,7 +16,7 @@ import {
   refreshTasksHandler,
 } from "./uiHelpers.js";
 import { findTask } from "../utils/taskFilters.js";
-import { deformatDate } from "../utils/dateUtils.js";
+import { deformatDate, formatDate } from "../utils/dateUtils.js";
 
 const projectNavListener = () => {
   handleAddTaskButton(false);
@@ -98,10 +98,13 @@ document.querySelector(".add-task-button").addEventListener("click", () => {
 const completeTaskListener = (elementClicker) => {
   elementClicker.addEventListener("click", (event) => {
     const clickedElement = event.target;
-    if (elementClicker.checked || clickedElement.tagName === "IMG") {
+    if (
+      clickedElement.tagName === "INPUT" ||
+      clickedElement.tagName === "IMG"
+    ) {
       const findTaskWrapper = elementClicker.closest(".task-wrapper");
       const taskToCompleteId = findTaskWrapper.dataset.id;
-      completeTaskHandler(taskToCompleteId);
+      completeTaskHandler(taskToCompleteId, clickedElement.tagName === "INPUT");
       const tabTitle = document.querySelector(".projects-title").textContent;
 
       let timeOut = 0;
@@ -140,7 +143,7 @@ const editingTaskListener = (taskClicked) => {
       const projectTitle =
         document.querySelector(".projects-title").textContent;
       editTaskHandler(
-        { newTitle: editTaskTitle, newDate: editTaskDate },
+        { newTitle: editTaskTitle, newDate: formatDate(editTaskDate) },
         findTaskObject
       );
       console.log(loadProjects());

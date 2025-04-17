@@ -39,6 +39,10 @@ const createTaskContainer = (tasksContainer, tasks, tabTitle) => {
     checkBox.id = hyphenedTitle;
     checkBox.name = hyphenedTitle;
     checkBoxWrapper.appendChild(checkBox);
+    if (task.getCompletion()) {
+      checkBox.checked = true;
+      checkBox.disabled = true;
+    }
     completeTaskListener(checkBox);
 
     const label = document.createElement("label");

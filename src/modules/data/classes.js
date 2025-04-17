@@ -13,7 +13,7 @@ class Project {
     this.#tasks.push(task);
   }
 
-  completeTask(completedTask) {
+  removeTask(completedTask) {
     this.#tasks = this.#tasks.filter((task) => task !== completedTask);
   }
 }
@@ -29,6 +29,10 @@ class Task {
 
   getId() {
     return this.#id;
+  }
+
+  getCompletion() {
+    return this.#completed;
   }
 
   toggleCompletion() {

@@ -39,13 +39,18 @@ const addTaskHandler = (taskName, taskDate, projectName) => {
   project.addTask(new Task(taskName, formatDate(taskDate), projectName));
 };
 
-const completeTaskHandler = (taskId) => {
+const completeTaskHandler = (taskId, isCheckBox) => {
   const taskToComplete = findTask(taskId);
-  let project = projects.find(
-    (project) => project.title === taskToComplete.projectTitle
-  );
+  console.log(taskToComplete);
 
-  project.completeTask(taskToComplete);
+  if (isCheckBox) {
+    taskToComplete.toggleCompletion();
+  } else {
+    let project = projects.find(
+      (project) => project.title === taskToComplete.projectTitle
+    );
+    project.removeTask(taskToComplete);
+  }
 };
 
 const editTaskHandler = (newTaskObject, task) => {

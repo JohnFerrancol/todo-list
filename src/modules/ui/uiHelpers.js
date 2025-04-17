@@ -4,6 +4,7 @@ import {
   getAllTasks,
   getTodayTasks,
   getWeekTasks,
+  getCompletedTasks,
 } from "../utils/taskFilters.js";
 
 const handleTabSelectionUI = (links, link) => {
@@ -32,8 +33,13 @@ const refreshTasksHandler = (tabTitle) => {
       "All Tasks": getAllTasks(),
       Today: getTodayTasks(),
       Week: getWeekTasks(),
+      Completed: getCompletedTasks(),
     };
     renderTasks(mappingTasksToRender[tabTitle], tabTitle);
+    if (mappingTasksToRender[tabTitle] === "Completed") {
+      const checkboxes = document.querySelectorAll(".checkbox-wrapper > input");
+      checkboxes.forEach((checkbox) => (checkbox.checked = true));
+    }
     handleAddTaskButton(false);
   }
 };
