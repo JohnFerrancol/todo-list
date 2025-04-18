@@ -1,10 +1,16 @@
 import closeDialogLogo from "../../assets/logos/close.svg";
 import deleteIconLogo from "../../assets/logos/delete.svg";
-import { completeTaskListener, editingTaskListener } from "./event.js";
+import dotsVerticalLogo from "../../assets/logos/dots-vertical.svg";
+import {
+  completeTaskListener,
+  editingTaskListener,
+  hoverNavWrapperListener,
+} from "./event.js";
 
 const createProjectsContainer = (projectsContainer, projects) => {
   projects.forEach((project) => {
     const navWrapper = document.createElement("li");
+    navWrapper.dataset.id = project.getId();
     navWrapper.classList.add("nav-wrapper");
 
     const navText = document.createElement("a");
@@ -14,9 +20,41 @@ const createProjectsContainer = (projectsContainer, projects) => {
     navText.textContent = `# ${project.title}`;
     navText.dataset.tab = project.title;
 
+    hoverNavWrapperListener(navWrapper);
+
     navWrapper.appendChild(navText);
     projectsContainer.appendChild(navWrapper);
   });
+};
+
+const createChangeProjectStateIcon = (navWrapper) => {
+  const dotsVerticalIcon = document.createElement("img");
+  dotsVerticalIcon.classList.add("dots-vertical-icon");
+  dotsVerticalIcon.src = dotsVerticalLogo;
+  dotsVerticalIcon.alt = "Delete Project";
+
+  navWrapper.appendChild(dotsVerticalIcon);
+};
+
+const createChangeStateMenu = (navWrapper) => {
+  const contextMenu = document.createElement("div");
+  contextMenu.classList.add("context-menu");
+  navWrapper.style.position = "relative";
+
+  contextMenu.style.position = "absolute";
+  navWrapper.append(contextMenu);
+
+  const renameProjectButton = document.createElement("button");
+  renameProjectButton.classList.add("context-menu-button");
+  renameProjectButton.id = "rename-project-button";
+  renameProjectButton.textContent = "Rename";
+  contextMenu.appendChild(renameProjectButton);
+
+  const deleteProjectButton = document.createElement("button");
+  deleteProjectButton.classList.add("context-menu-button");
+  deleteProjectButton.id = "delete-project-button";
+  deleteProjectButton.textContent = "Delete";
+  contextMenu.appendChild(deleteProjectButton);
 };
 
 const createTaskContainer = (tasksContainer, tasks, tabTitle) => {
@@ -173,4 +211,6 @@ export {
   createProjectsContainer,
   createProjectDialog,
   createTaskDialog,
+  createChangeProjectStateIcon,
+  createChangeStateMenu,
 };

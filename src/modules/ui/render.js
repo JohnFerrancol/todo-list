@@ -3,6 +3,8 @@ import {
   createProjectsContainer,
   createProjectDialog,
   createTaskDialog,
+  createChangeProjectStateIcon,
+  createChangeStateMenu,
 } from "./dom.js";
 
 const renderProjects = (projects) => {
@@ -33,9 +35,22 @@ const renderAddTaskDialog = () => {
   createTaskDialog(addTaskDialog);
 };
 
+const renderChangeProjectStateIcon = (navWrapper) => {
+  const existingIcon = document.querySelector(".dots-vertical-icon");
+  if (!existingIcon) {
+    createChangeProjectStateIcon(navWrapper);
+  }
+};
+
+const renderChangeStateMenu = (navWrapper) => {
+  createChangeStateMenu(navWrapper);
+};
+
 export {
   renderProjects,
   renderTasks,
   renderAddProjectDialog,
   renderAddTaskDialog,
+  renderChangeProjectStateIcon,
+  renderChangeStateMenu,
 };

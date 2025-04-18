@@ -2,10 +2,13 @@ import {
   renderAddProjectDialog,
   renderAddTaskDialog,
   renderProjects,
+  renderChangeProjectStateIcon,
+  renderChangeStateMenu,
 } from "./render.js";
 import {
   loadProjects,
   addProjectHandler,
+  removeProjectHandler,
   addTaskHandler,
   completeTaskHandler,
   editTaskHandler,
@@ -159,4 +162,63 @@ const editingTaskListener = (taskClicked) => {
   });
 };
 
-export { projectNavListener, completeTaskListener, editingTaskListener };
+const hoverNavWrapperListener = (navWrapper) => {
+  navWrapper.addEventListener("mouseenter", () => {
+    renderChangeProjectStateIcon(navWrapper);
+
+    const deleteProjectIcon = document.querySelector(".dots-vertical-icon");
+    deleteProjectIcon.addEventListener("click", () => {
+      renderChangeStateMenu(navWrapper);
+
+      const projectId = navWrapper.dataset.id;
+
+      const contextMenu = document.querySelector(".context-menu");
+      contextMenuEventListener(contextMenu, projectId);
+    });
+  });
+
+  navWrapper.addEventListener("mouseleave", () => {
+    const icon = navWrapper.querySelector(".dots-vertical-icon");
+    const contextMenu = navWrapper.querySelector(".context-menu");
+    if (icon) icon.remove();
+    if (contextMenu) contextMenu.remove();
+  });
+};
+
+const contextMenuEventListener = (contextMenu, projectId) => {
+  contextMenu.addEventListener("click", (event) => {
+    let targetId = event.target.id;
+
+    switch (targetId) {
+      case "rename-project-button":
+        console.log(`Renaming project: ${projectId}`);
+        break;
+      case "delete-project-button":
+        removeProjectHandler(projectId);
+        setTimeout(() => {
+          renderProjects(loadProjects());
+          refreshTasksHandler("All Tasks");
+
+          const links = document.querySelectorAll(".nav-text");
+          const projectLinks = document.querySelector(
+            ".nav-projects .nav-text"
+          );
+
+          console.log(projectLinks);
+          const linkToRender = projectLinks
+            ? projectLinks
+            : document.querySelector("[data-tab='All Tasks']");
+          handleTabSelectionUI(links, linkToRender);
+        }, 250);
+
+        break;
+    }
+  });
+};
+
+export {
+  projectNavListener,
+  completeTaskListener,
+  editingTaskListener,
+  hoverNavWrapperListener,
+};

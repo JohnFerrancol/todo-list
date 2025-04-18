@@ -5,6 +5,10 @@ class Project {
     this.title = title;
   }
 
+  getId() {
+    return this.#id;
+  }
+
   getTasks() {
     return this.#tasks;
   }
