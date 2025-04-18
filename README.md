@@ -61,5 +61,5 @@ npm run serve
 - [x] Added the forms to add a project or to add a task to the project
 - [x] Added tabs to see Tasks in a specific time frame like tasks for Today and the week
 - [x] Handling logic to complete tasks
-- [ ] Handling logic to edit task information or project names
+- [x] Handling logic to edit task information or project names
 - [ ] Implemented local storage to store all of this data

@@ -17,6 +17,10 @@ class Project {
     this.#tasks.push(task);
   }
 
+  rename(newTitle) {
+    this.title = newTitle;
+  }
+
   removeTask(completedTask) {
     this.#tasks = this.#tasks.filter((task) => task !== completedTask);
   }

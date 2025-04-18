@@ -8,6 +8,7 @@ import {
 import {
   loadProjects,
   addProjectHandler,
+  renameProjectHandler,
   removeProjectHandler,
   addTaskHandler,
   completeTaskHandler,
@@ -191,7 +192,44 @@ const contextMenuEventListener = (contextMenu, projectId) => {
 
     switch (targetId) {
       case "rename-project-button":
-        console.log(`Renaming project: ${projectId}`);
+        renderAddProjectDialog();
+
+        let projects = loadProjects();
+        let project = projects.find((project) => project.getId() === projectId);
+
+        const projectTitle = document.querySelector("#new-project-title");
+        projectTitle.value = project.title;
+
+        const editProjectDialog = document.querySelector("dialog");
+        editProjectDialog.showModal();
+
+        const editProjectForm = document.querySelector(".create-project-form");
+        editProjectForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const newProjectTitle = document
+            .querySelector("#new-project-title")
+            .value.trim();
+
+          renameProjectHandler(newProjectTitle, projectId);
+          const projects = loadProjects();
+          renderProjects(projects);
+
+          const links = document.querySelectorAll(".nav-text");
+          const projectLink = document.querySelector(
+            `[data-tab="${newProjectTitle}"]`
+          );
+
+          handleTabSelectionUI(links, projectLink);
+          refreshTasksHandler(newProjectTitle);
+          editProjectDialog.close();
+          projectNavListener();
+          handleAddTaskButton(true);
+        });
+
+        const closeDialogIcon = document.querySelector(".close-dialog-icon");
+        closeDialogIcon.addEventListener("click", () => {
+          editProjectDialog.close();
+        });
         break;
       case "delete-project-button":
         removeProjectHandler(projectId);

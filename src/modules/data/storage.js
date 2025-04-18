@@ -32,6 +32,16 @@ const addProjectHandler = (projectName) => {
   projects.push(newProject);
 };
 
+const renameProjectHandler = (projectName, projectId) => {
+  let projects = loadProjects();
+
+  let project = projects.find((project) => project.getId() === projectId);
+
+  const tasks = project.getTasks();
+  tasks.forEach((task) => (task.projectTitle = projectName));
+  project.rename(projectName);
+};
+
 const removeProjectHandler = (projectId) => {
   let projects = loadProjects();
 
@@ -72,4 +82,5 @@ export {
   addTaskHandler,
   completeTaskHandler,
   editTaskHandler,
+  renameProjectHandler,
 };
