@@ -1,20 +1,20 @@
 class Project {
-  #id = crypto.randomUUID();
-  #tasks = [];
+  _id = crypto.randomUUID();
+  _tasks = [];
   constructor(title) {
     this.title = title;
   }
 
   getId() {
-    return this.#id;
+    return this._id;
   }
 
   getTasks() {
-    return this.#tasks;
+    return this._tasks;
   }
 
   addTask(task) {
-    this.#tasks.push(task);
+    this._tasks.push(task);
   }
 
   rename(newTitle) {
@@ -22,34 +22,67 @@ class Project {
   }
 
   removeTask(completedTask) {
-    this.#tasks = this.#tasks.filter((task) => task !== completedTask);
+    this._tasks = this._tasks.filter((task) => task !== completedTask);
+  }
+
+  // Restore from JSON
+  static fromJSON(data) {
+    const project = new Project(data.title);
+    project._id = data._id;
+    project._tasks = data._tasks.map((taskData) => Task.fromJSON(taskData));
+    return project;
+  }
+
+  toJSON() {
+    return {
+      _id: this._id,
+      title: this.title,
+      _tasks: this._tasks.map((task) => task.toJSON()),
+    };
   }
 }
 
 class Task {
-  #id = crypto.randomUUID();
-  #completed = false;
   constructor(title, date, projectTitle) {
     this.title = title;
     this.date = date;
     this.projectTitle = projectTitle;
+    this._id = crypto.randomUUID();
+    this._completed = false;
   }
 
   getId() {
-    return this.#id;
+    return this._id;
   }
 
   getCompletion() {
-    return this.#completed;
+    return this._completed;
   }
 
   toggleCompletion() {
-    this.#completed = !this.#completed;
+    this._completed = !this._completed;
   }
 
   editTask(newTaskObject) {
     this.title = newTaskObject.newTitle;
     this.date = newTaskObject.newDate;
+  }
+
+  toJSON() {
+    return {
+      _id: this._id,
+      _completed: this._completed,
+      title: this.title,
+      date: this.date,
+      projectTitle: this.projectTitle,
+    };
+  }
+
+  static fromJSON(data) {
+    const task = new Task(data.title, data.date, data.projectTitle);
+    task._id = data._id;
+    task._completed = data._completed;
+    return task;
   }
 }
 

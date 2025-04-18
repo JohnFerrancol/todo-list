@@ -62,4 +62,4 @@ npm run serve
 - [x] Added tabs to see Tasks in a specific time frame like tasks for Today and the week
 - [x] Handling logic to complete tasks
 - [x] Handling logic to edit task information or project names
-- [ ] Implemented local storage to store all of this data
+- [x] Implemented local storage to store all of this data

@@ -150,10 +150,8 @@ const editingTaskListener = (taskClicked) => {
         { newTitle: editTaskTitle, newDate: formatDate(editTaskDate) },
         findTaskObject
       );
-      console.log(loadProjects());
       refreshTasksHandler(projectTitle);
       editTaskDialog.close();
-      handleAddTaskButton(true);
     });
 
     const closeDialogIcon = document.querySelector(".close-dialog-icon");

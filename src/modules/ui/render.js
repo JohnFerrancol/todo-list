@@ -17,7 +17,6 @@ const renderProjects = (projects) => {
 const renderTasks = (tasks, tabTitle) => {
   const tasksContainer = document.querySelector(".tasks-container");
   tasksContainer.innerHTML = "";
-
   createTaskContainer(tasksContainer, tasks, tabTitle);
 };
 
