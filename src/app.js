@@ -6,6 +6,7 @@ import { getAllTasks } from "./modules/utils/taskFilters.js";
 import { Project, Task } from "./modules/data/classes.js";
 import { formatDate } from "./modules/utils/dateUtils.js";
 
+// Define a function that is used to populate the projects array in local storage when the projects does not exist in the array
 const initialiseProjects = () => {
   let projects = [];
   const project1 = new Project("Web Development");
@@ -37,16 +38,19 @@ const initialiseProjects = () => {
     new Task("Complete DSA", formatDate(new Date("2025-04-22")), project2.title)
   );
   projects.push(project2.toJSON());
-  localStorage.setItem("projects", JSON.stringify(projects));
+  setProjects(projects);
 };
 
 const init = (function () {
   let projects = loadProjects();
 
+  // Run the initialiseProjects if projects in local storage does not exist
   if (!projects) {
     initialiseProjects();
     projects = loadProjects();
   }
+
+  // Render the projects and all of the tasks as well as run the event listener which listens for tab switching
   renderProjects(projects);
   renderTasks(getAllTasks(), "All Tasks");
   projectNavListener();

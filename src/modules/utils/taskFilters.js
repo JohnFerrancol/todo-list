@@ -1,6 +1,7 @@
 import { loadProjects } from "../data/storage.js";
 import { isToday, isThisWeek } from "date-fns";
 
+// Running a central function that takes in a function inline that is used to filter the tasks rendered
 const getFilteredTasks = (filterFunction, filterIsComplete) => {
   const projects = loadProjects();
   const filteredTasks = [];
@@ -9,7 +10,12 @@ const getFilteredTasks = (filterFunction, filterIsComplete) => {
     const tasks = project.getTasks();
 
     tasks.forEach((task) => {
+      // Boolean variable is used to ensure that the the task is complete boolean value and whether we want to see completed tasks boolean value matches
+      // This is because -> For all tabs in the webpage, we only want to see incomplete tasks so both values should be false
+      // For tab with completed tasks, both values should be true
       const completionMatches = task.getCompletion() === filterIsComplete;
+
+      // Is the boolean value matches as well as it matches the filter function push the task onto the array
       if (filterFunction(task) && completionMatches) {
         filteredTasks.push(task);
       }

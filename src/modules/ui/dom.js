@@ -7,6 +7,7 @@ import {
   hoverNavWrapperListener,
 } from "./event.js";
 
+// Adding DOM elements to display the projects container
 const createProjectsContainer = (projectsContainer, projects) => {
   projects.forEach((project) => {
     const navWrapper = document.createElement("li");
@@ -27,6 +28,7 @@ const createProjectsContainer = (projectsContainer, projects) => {
   });
 };
 
+// Adding DOM elements when the nav Wrapper element is hovered
 const createChangeProjectStateIcon = (navWrapper) => {
   const dotsVerticalIcon = document.createElement("img");
   dotsVerticalIcon.classList.add("dots-vertical-icon");
@@ -36,6 +38,7 @@ const createChangeProjectStateIcon = (navWrapper) => {
   navWrapper.appendChild(dotsVerticalIcon);
 };
 
+// Adding DOM elements when the three dots icon is pressed
 const createChangeStateMenu = (navWrapper) => {
   const contextMenu = document.createElement("div");
   contextMenu.classList.add("context-menu");
@@ -57,6 +60,7 @@ const createChangeStateMenu = (navWrapper) => {
   contextMenu.appendChild(deleteProjectButton);
 };
 
+// Adding DOM elements when we want to render the tasks based on the active tab
 const createTaskContainer = (tasksContainer, tasks, tabTitle) => {
   const tabTitleDisplay = document.querySelector(".projects-title");
   tabTitleDisplay.textContent = tabTitle;
@@ -117,6 +121,7 @@ const createTaskContainer = (tasksContainer, tasks, tabTitle) => {
   });
 };
 
+// Adding DOM elements when loading a dialog to add a project
 const createProjectDialog = (addProjectDialog) => {
   const closeDialogContainer = document.createElement("div");
   closeDialogContainer.classList.add("close-dialog-container");
@@ -157,6 +162,7 @@ const createProjectDialog = (addProjectDialog) => {
   submitButtonContainer.appendChild(submitButton);
 };
 
+// Adding DOM elements when loading a dialog to add a task
 const createTaskDialog = (addTaskDialog) => {
   const closeDialogContainer = document.createElement("div");
   closeDialogContainer.classList.add("close-dialog-container");

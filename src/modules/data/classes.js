@@ -1,3 +1,4 @@
+// Project Class is used to define a project in the To-do App
 class Project {
   _id = crypto.randomUUID();
   _tasks = [];
@@ -25,7 +26,7 @@ class Project {
     this._tasks = this._tasks.filter((task) => task !== completedTask);
   }
 
-  // Restore from JSON
+  // Convert the JSON to class data
   static fromJSON(data) {
     const project = new Project(data.title);
     project._id = data._id;
@@ -33,6 +34,7 @@ class Project {
     return project;
   }
 
+  // Convert class data to JSON
   toJSON() {
     return {
       _id: this._id,
@@ -42,6 +44,7 @@ class Project {
   }
 }
 
+// Project Class is used to define a task in the To-do App
 class Task {
   constructor(title, date, projectTitle) {
     this.title = title;
@@ -68,6 +71,7 @@ class Task {
     this.date = newTaskObject.newDate;
   }
 
+  // Convert class data to JSON
   toJSON() {
     return {
       _id: this._id,
@@ -78,6 +82,7 @@ class Task {
     };
   }
 
+  // Convert the JSON to class data
   static fromJSON(data) {
     const task = new Task(data.title, data.date, data.projectTitle);
     task._id = data._id;
