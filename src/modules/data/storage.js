@@ -1,14 +1,14 @@
-import { Project, Task } from "./classes.js";
-import { formatDate } from "../utils/dateUtils.js";
+import { Project, Task } from './classes.js';
+import { formatDate } from '../utils/dateUtils.js';
 
 // Function used to update the projects array in local storage
 const setProjects = (projects) => {
-  localStorage.setItem("projects", JSON.stringify(projects));
+  localStorage.setItem('projects', JSON.stringify(projects));
 };
 
 // Function used to get the projects array in the local storage and converting the projects array from JSON to an array of Project objects with an array of Task Objects
 const loadProjects = () => {
-  const projectData = localStorage.getItem("projects");
+  const projectData = localStorage.getItem('projects');
   if (projectData) {
     let rawProjects = JSON.parse(projectData);
     return rawProjects.map(Project.fromJSON);

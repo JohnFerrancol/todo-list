@@ -1,15 +1,17 @@
 @font-face {
-  font-family: "Manrope Regular";
-  src: url("../assets/fonts/manrope-regular-webfont.woff2") format("woff2"),
-    url("../assets/fonts/manrope-regular-webfont.woff") format("woff");
+  font-family: 'Manrope Regular';
+  src:
+    url('../assets/fonts/manrope-regular-webfont.woff2') format('woff2'),
+    url('../assets/fonts/manrope-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "Manrope Bold";
-  src: url("../assets/fonts/manrope-bold-webfont.woff2") format("woff2"),
-    url("../assets/fonts/manrope-bold-webfont.woff") format("woff");
+  font-family: 'Manrope Bold';
+  src:
+    url('../assets/fonts/manrope-bold-webfont.woff2') format('woff2'),
+    url('../assets/fonts/manrope-bold-webfont.woff') format('woff');
   font-weight: bold;
   font-style: normal;
 }
@@ -30,8 +32,8 @@
     brightness(86%) contrast(101%);
   --aside-background: #fcfaf8;
   --main-background: #ffffff;
-  --regular-font: "Manrope Regular", sans-serif;
-  --bolded-font: "Manrope Bold", "Manrope Regular";
+  --regular-font: 'Manrope Regular', sans-serif;
+  --bolded-font: 'Manrope Bold', 'Manrope Regular';
   --line-color: #c0c0c0c0;
   --dialog-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.16);
 }
@@ -194,7 +196,7 @@ main.projects-view .task-wrapper {
   justify-content: space-between;
 }
 
-main.projects-view input[type="checkbox"] {
+main.projects-view input[type='checkbox'] {
   appearance: none;
   background-color: #fff;
   margin: 0;
@@ -209,8 +211,8 @@ main.projects-view input[type="checkbox"] {
   place-content: center;
 }
 
-main.projects-view input[type="checkbox"]::before {
-  content: "";
+main.projects-view input[type='checkbox']::before {
+  content: '';
   width: 0.65em;
   height: 0.65em;
   transform: scale(0);
@@ -220,23 +222,23 @@ main.projects-view input[type="checkbox"]::before {
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
-main.projects-view input[type="checkbox"]:checked::before {
+main.projects-view input[type='checkbox']:checked::before {
   transform: scale(1);
 }
 
-main.projects-view input[type="checkbox"]:checked,
-main.projects-view input[type="checkbox"]:checked + label {
+main.projects-view input[type='checkbox']:checked,
+main.projects-view input[type='checkbox']:checked + label {
   cursor: not-allowed;
 }
 
-main.projects-view input[type="checkbox"]:checked + label {
+main.projects-view input[type='checkbox']:checked + label {
   text-decoration: line-through;
   color: var(--line-color);
   pointer-events: none;
 }
 
-main.projects-view input[type="checkbox"],
-main.projects-view input[type="checkbox"] + label,
+main.projects-view input[type='checkbox'],
+main.projects-view input[type='checkbox'] + label,
 main.projects-view .delete-task-icon {
   cursor: pointer;
 }

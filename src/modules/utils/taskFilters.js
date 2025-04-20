@@ -1,5 +1,5 @@
-import { loadProjects } from "../data/storage.js";
-import { isToday, isThisWeek } from "date-fns";
+import { loadProjects } from '../data/storage.js';
+import { isToday, isThisWeek } from 'date-fns';
 
 // Running a central function that takes in a function inline that is used to filter the tasks rendered
 const getFilteredTasks = (filterFunction, filterIsComplete) => {
