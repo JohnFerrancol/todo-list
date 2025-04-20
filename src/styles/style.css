@@ -224,9 +224,21 @@ main.projects-view input[type="checkbox"]:checked::before {
   transform: scale(1);
 }
 
+main.projects-view input[type="checkbox"]:checked,
+main.projects-view input[type="checkbox"]:checked + label {
+  cursor: not-allowed;
+}
+
 main.projects-view input[type="checkbox"]:checked + label {
   text-decoration: line-through;
   color: var(--line-color);
+  pointer-events: none;
+}
+
+main.projects-view input[type="checkbox"],
+main.projects-view input[type="checkbox"] + label,
+main.projects-view .delete-task-icon {
+  cursor: pointer;
 }
 
 main.projects-view .task-information {
@@ -324,4 +336,5 @@ dialog .submit-button {
   font-size: inherit;
   padding: 0.5rem;
   border-radius: 0.25rem;
+  cursor: pointer;
 }
