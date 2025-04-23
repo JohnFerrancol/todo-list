@@ -39,7 +39,7 @@ Getting started on running the webpack server to your localhost, localhost:8080
 1. Running the webpack server
 
 ```sh
-git clone git@github.com:JohnFerrancol/restaurant-page.git
+git clone git@github.com:JohnFerrancol/todo-list.git
 ```
 
 2. Installing npm packages
